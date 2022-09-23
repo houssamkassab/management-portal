@@ -1,0 +1,95 @@
+.HeaderComponent {
+  .div-unexpended {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  h4 {
+    margin: unset;
+  }
+  .icon-style {
+    margin-right: 10px;
+  }
+  .logo {
+    border: 1px solid gainsboro;
+  }
+  .menu-style {
+    transform: rotate(180deg);
+  }
+}
+
+.example-sidenav-content {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  .content-div {
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    //padding: 0px 40px;
+  }
+}
+
+.example-sidenav {
+  background-color: #fff;
+}
+
+.is-activate {
+  //background-color: rgba(9, 30, 66, 0.25);
+  background-color: var(--green-color) !important;
+  color: red !important;
+}
+
+.sidenav-item {
+  color: #000;
+  font-size: 20px;
+}
+
+.example-sidenav-content {
+  //max-height: 80vh;
+  overflow-y: auto;
+}
+
+mat-icon {
+  color: #00000095 !important;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+  box-shadow: unset !important;
+}
+
+.toolbar {
+  background: #fff !important;
+  color: #000;
+  border: 1px solid gainsboro;
+  position: sticky;
+  top: 0;
+  z-index: 11;
+}
+
+.menu-btn {
+  margin-left: 20px;
+  mat-icon {
+    font-size: 2.5em;
+  }
+}
+
+.user-profile-div {
+  padding: 10px 10px 0 0;
+
+  .user-name {
+
+  }
+  .user-position {
+    opacity: 0.4;
+    position: relative;
+    bottom: 10px;
+  }
+}

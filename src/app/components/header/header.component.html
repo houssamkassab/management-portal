@@ -1,0 +1,229 @@
+
+<section class="HeaderComponent">
+
+  <mat-toolbar class="toolbar">
+
+    <mat-toolbar-row style="padding: 0 16px 0 0;" fxLayout="row" fxLayoutAlign="space-between center">
+
+      <div fxLayout="row" fxLayoutAlign="start center">
+          <img class="logo"
+               *ngIf="isExpanded"
+               src="assets/images/logo.png"
+               alt=""
+               style="width:334px; height: 64px; object-fit: fill">
+          <img class="logo"
+               *ngIf="!isExpanded"
+               src="assets/images/images_scisp.png"
+               alt="" style="width:62px; height: 64px; object-fit: contain">
+          <button mat-icon-button class="menu-btn">
+            <mat-icon (click)="isExpanded = !isExpanded " [ngClass]="{'menu-style': !isExpanded}">menu_open</mat-icon>
+          </button>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center" style="min-width: 150px;">
+        <mat-icon class="material-icons-outlined">notifications</mat-icon>
+        <img style="width:45px; height: 45px; margin: 0 15px" src="https://cdn.icon-icons.com/icons2/1879/PNG/512/iconfinder-8-avatar-2754583_120515.png" alt="">
+        <div fxLayout="column" class="user-profile-div">
+           <span class="user-name"> Youssef El Turk</span>
+          <span class="user-position">  UI/UX Designer </span>
+        </div>
+
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+
+  <mat-drawer-container class="example-container mat-typography" autosize>
+    <mat-drawer #drawer mode="side" disableClose="true" opened="true" [ngStyle]="{'width.px': isExpanded ? '335' : '64'}">
+      <mat-nav-list>
+
+         <div *ngFor="let item of menu">
+          <div style="min-height: 45px;" [ngClass]="{'div-unexpended' : !isExpanded }"  *ngIf="item.children && item.children.length > 0">
+            <mat-icon *ngIf="!isExpanded" (click)="isExpanded = true" style="margin-right: 10px;">{{item.iconName}}</mat-icon>
+            <mat-accordion *ngIf="isExpanded">
+              <mat-expansion-panel>
+                <mat-expansion-panel-header style="padding: 0 15px !important;">
+                  <mat-panel-title>
+                    <div fxLayout="row" fxLayoutAlign="start start" >
+                     <mat-icon class="icon-style">{{item.iconName}}</mat-icon>
+                     <h4 mat-line > {{item.displayName}}</h4>
+                    </div>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div *ngFor="let child of item.children">
+                  <mat-list-item [routerLink]="[child.route]"  routerLinkActive="is-active">
+                    <div fxLayout="row" fxLayoutAlign="start start" >
+                      <mat-icon class="icon-style">{{child.iconName}}</mat-icon>
+                      <h4 mat-line *ngIf="isExpanded"> {{child.displayName}}</h4>
+                    </div>
+                  </mat-list-item>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+
+
+          <div *ngIf="!item.children || item.children.length === 0">
+
+            <mat-list-item [routerLink]="[item.route]"  routerLinkActive="is-active">
+              <div fxLayout="row" fxLayoutAlign="start start">
+                <mat-icon class="icon-style">{{item.iconName}}</mat-icon>
+                <h4 mat-line *ngIf="isExpanded"> {{item.displayName}}</h4>
+              </div>
+            </mat-list-item>
+          </div>
+        </div>
+
+      </mat-nav-list>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+      <div class="content-div">
+        <router-outlet></router-outlet>
+      </div>
+      <!--<div style="width:100%; background: red;height: 80px;position: fixed; bottom: 0"></div>-->
+    </div>
+
+    <!--<div style="width:100%; background: #fff;height: 80px;position: fixed; bottom: 0"></div>-->
+  </mat-drawer-container>
+</section>
+
+
+<section  style="width: 100vh" *ngIf="false">
+
+  <mat-toolbar color="primary">
+    <mat-toolbar-row style="padding: 0 16px 0 0;">
+      <img *ngIf="sidenav.opened" src="assets/images/scicp_logo.jpg" alt="" style="width:340px; height: 64px; object-fit: fill">
+      <img *ngIf="!sidenav.opened" src="assets/images/images_scisp.png" alt="" style="width:64px; height: 64px; object-fit: contain">
+      <button mat-icon-button>
+        <mat-icon (click)="toggleSideNav(sidenav) ">menu</mat-icon>
+      </button>
+      <h1>SimpleCRM</h1>
+      <span class="menu-spacer"></span>
+      <div>
+        <!-- <a mat-button [routerLink]="'/accounts'"> Accounts </a>
+         <a mat-button [routerLink]="'/create-account'"> Create Account </a>
+         <a mat-button [routerLink]="'/contacts'"> Contacts </a>
+         <a mat-button [routerLink]="'/create-contact'"> Create Contact </a>
+         <a mat-button [routerLink]="'/activities'"> Activities </a>
+         <a mat-button [routerLink]="'/create-activity'"> Create Activity </a>-->
+
+      </div>
+    </mat-toolbar-row>
+
+    <!--<mat-toolbar-row>
+      <span style="font-size: 12px;">SimpleCRM helps you easily manage your contacts</span>
+    </mat-toolbar-row>-->
+  </mat-toolbar>
+  <!--fullscreen-->
+  <mat-sidenav-container style="height: 400px;">
+    <mat-sidenav class="matSidenav"
+      #sidenav
+      mode="side"
+      class="example-sidenav"
+      [ngStyle]="{ 'width.em': sidenavWidth }"
+      [ngClass]="{'isOpened' :sidenav.opened , 'isClosed': !sidenav.opened  }"
+      opened="false"
+      (mouseenter)="increase()"
+      (mouseleave)="decrease()"
+    >
+      <mat-nav-list>
+        <mat-list-item routerLink="1" routerLinkActive="active">
+          <mat-icon mat-list-icon>link</mat-icon>
+          <div fxFlex="10"></div>
+          <div *ngIf="sidenavWidth > 6" class="sidenav-item">
+            <h5>Component 1</h5>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item routerLink="2" routerLinkActive="active">
+          <mat-icon mat-list-icon>face</mat-icon>
+          <div fxFlex="10"></div>
+          <div *ngIf="sidenavWidth > 6" class="sidenav-item">
+            <h5>Component 2</h5>
+          </div>
+        </mat-list-item>
+
+        <mat-list-item routerLink="3" routerLinkActive="active">
+          <mat-icon mat-list-icon>home</mat-icon>
+          <div fxFlex="10"></div>
+          <div *ngIf="sidenavWidth > 6" class="sidenav-item">
+            <h5>Component 3</h5>
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+
+  </mat-sidenav-container>
+</section>
+
+<section class="HeaderComponent" *ngIf="false">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row style="padding: 0 16px 0 0;">
+      <img src="assets/images/scicp_logo.jpg" alt="" style="width:340px; height: 64px; object-fit: fill">
+      <button mat-icon-button>
+        <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+      </button>
+      <h1>SimpleCRM</h1>
+      <span class="menu-spacer"></span>
+      <div>
+        <!-- <a mat-button [routerLink]="'/accounts'"> Accounts </a>
+         <a mat-button [routerLink]="'/create-account'"> Create Account </a>
+         <a mat-button [routerLink]="'/contacts'"> Contacts </a>
+         <a mat-button [routerLink]="'/create-contact'"> Create Contact </a>
+         <a mat-button [routerLink]="'/activities'"> Activities </a>
+         <a mat-button [routerLink]="'/create-activity'"> Create Activity </a>-->
+
+      </div>
+    </mat-toolbar-row>
+
+    <!--<mat-toolbar-row>
+      <span style="font-size: 12px;">SimpleCRM helps you easily manage your contacts</span>
+    </mat-toolbar-row>-->
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav >
+      <mat-nav-list>
+
+        <a mat-list-item [routerLink]="'/accounts'"> Accounts </a>
+        <a mat-list-item [routerLink]="'/create-account'"> Create Account </a>
+        <a mat-list-item [routerLink]="'/contacts'"> Contacts </a>
+        <a mat-list-item [routerLink]="'/create-contact'"> Create Contact </a>
+        <a mat-list-item [routerLink]="'/activities'"> Activities </a>
+        <a mat-list-item [routerLink]="'/create-activity'"> Create Activity </a>
+        <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div style="height: 88vh;">
+
+
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  <!--to view later-->
+  <!-- <mat-sidenav-container fullscreen>
+     <mat-sidenav mode="side" #sidenav opened position="start">
+       left panel
+     </mat-sidenav>
+     <mat-sidenav-content>
+       <mat-toolbar color="primary">
+         <button mat-icon-button (click)="sidenav.toggle()">
+           <mat-icon>menu</mat-icon>
+         </button>
+         My Application
+         <span class="toolbar-spacer"></span>
+         My Account
+       </mat-toolbar>
+       <div class="main-content">
+         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+       </div>
+       <router-outlet></router-outlet>
+     </mat-sidenav-content>
+   </mat-sidenav-container>-->
+
+</section>

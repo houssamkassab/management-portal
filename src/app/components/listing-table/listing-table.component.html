@@ -1,0 +1,21 @@
+<div class="section-content">
+
+  <table *ngIf="data?.length">
+    <thead>
+    <tr>
+      <th *ngFor="let col of options.cols">
+        {{col.header}}
+      </th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of data">
+      <td *ngFor="let col of options.cols">
+        {{item[col.key]}}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>

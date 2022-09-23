@@ -1,0 +1,62 @@
+<section class="budgetComponent">
+  <!--<div *ngFor="let item of data; let ii=index">-->
+  <!--<p>{{item.project_name}}</p>-->
+  <!--</div>-->
+
+  <div class="filter-div">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Search by project name</mat-label>
+      <input matInput type="text" placeholder="Search by project name" (input)="filterProject($event)"
+             [(ngModel)]="inputSearch">
+    </mat-form-field>
+
+
+    <button mat-button class="newPjBtn" (click)="openDialog()">
+      + &nbsp; New Project
+    </button>
+  </div>
+
+  <section class="budget-content">
+    <h2>Budget</h2>
+
+    <table *ngIf="data?.length">
+      <thead>
+      <tr>
+        <th>Project</th>
+        <th>Tasks</th>
+        <th>Members</th>
+        <th>Progress</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of data; let ii=index">
+        <td class="td-images">
+          <img [src]="item?.image" alt="">
+          {{item.project_name}} {{item.project_name}}
+        </td>
+        <td>{{item.tasks}} Tasks</td>
+        <td class="td-images" *ngIf="item?.members?.length">
+          <img *ngIf="item?.members[0]?.profile" [src]="item.members[0].profile" alt="">
+          <img *ngIf="item?.members[1]?.profile" [src]="item.members[1].profile" alt="">
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <span> +</span>
+            <span>{{item.members.length}}</span>
+          </div>
+        </td>
+        <td>{{item.progress}}</td>
+        <td>{{item.status}}</td>
+        <td>
+          <button mat-icon-button (click)="openDialog(item)">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h2 *ngIf="!data?.length" class="noData">No Data</h2>
+  </section>
+</section>

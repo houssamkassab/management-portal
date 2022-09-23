@@ -1,0 +1,64 @@
+<div class="customModalStyle">
+  <button mat-icon-button
+          (click)="cancel()"
+          aria-label="Close dialog"
+          class="btnClose">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <div class="divContent">
+    <h2 *ngIf="!projectDetails">Create New Project</h2>
+    <h2 *ngIf="projectDetails">Update Project</h2>
+    <form [formGroup]="pjGroup">
+
+
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Project name</mat-label>
+          <input matInput type="text" placeholder="Project name" formControlName="pjName">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Tasks</mat-label>
+          <input matInput type="text" placeholder="Tasks" formControlName="tasks">
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutAling="space-between center">
+        <mat-form-field appearance="outline" style="margin-right: 15px;">
+          <mat-label>Status</mat-label>
+          <input matInput type="text" placeholder="Status" formControlName="status">
+        </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Members</mat-label>
+            <input matInput type="text" placeholder="Members" formControlName="members">
+          </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Progress</mat-label>
+          <input matInput type="text" placeholder="Members" formControlName="progress">
+        </mat-form-field>
+      </div>
+      <div class="modalAction">
+
+        <button *ngIf="projectDetails"
+                mat-dialog-close  mat-button class=" deletePjBtn " (click)="deleteProject()">
+          Delete  Project
+        </button>
+
+
+        <button mat-dialog-close cdkFocusInitial mat-button class="newPjBtn actions-btn" (click)="save()">
+         <span *ngIf="!projectDetails"> Create  Project</span>
+         <span *ngIf="projectDetails"> Update  Project</span>
+        </button>
+
+
+      </div>
+    </form>
+  </div>
+</div>
