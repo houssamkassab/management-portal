@@ -1,53 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BudgetComponent } from './components/budget/budget.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { EventManagementComponent } from './components/event-management/event-management.component';
-import { HomePageComponent } from './components/home-page/home-page.component';
-import { InvoicesComponent } from './components/invoices/invoices.component';
-import { ProjectManagementComponent } from './components/project-management/project-management.component';
-import { PurchaseOrderComponent } from './components/purchase-order/purchase-order.component';
-import { PurchaseRequestComponent } from './components/purchase-request/purchase-request.component';
+import { BudgetComponent } from './dash-module/components/budget/budget.component';
+import { DashboardComponent } from './dash-module/components/dashboard/dashboard.component';
+import { EventManagementComponent } from './dash-module/components/event-management/event-management.component';
+import { HomePageComponent } from './dash-module/components/home-page/home-page.component';
+import { InvoicesComponent } from './dash-module/components/invoices/invoices.component';
+import { ProjectManagementComponent } from './dash-module/components/project-management/project-management.component';
+import { PurchaseOrderComponent } from './dash-module/components/purchase-order/purchase-order.component';
+import { PurchaseRequestComponent } from './dash-module/components/purchase-request/purchase-request.component';
+import { LoginComponent } from './login-module/components/login/login.component';
 
 const routes: Routes = [
-  { path: '',
-    redirectTo: '/home',
-    pathMatch: 'full' },
+  // { path: '',
+  //   redirectTo: '/login',
+  //   pathMatch: 'full' },
+  {
+    path: 'login',
+    loadChildren: () => import('./login-module/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./dash-module/dashboard.module').then(m => m.DashboardModule)
+  },
+
   {
     path: 'home',
-    component: HomePageComponent
-  },
-  {
-    path: 'invoices',
-    component: InvoicesComponent
-  },
-  {
-    path: 'purchase-request',
-    component: PurchaseRequestComponent
-  },
-  {
-    path: 'purchase-order',
-    component: PurchaseOrderComponent
-  }
-  ,{
-    path: 'budget',
-    component: BudgetComponent
-  }
-  ,{
-    path: 'dashboard',
-    component: DashboardComponent
-  },
-  {
-    path: 'porject-management',
-    component: ProjectManagementComponent
-  },
-  {
-    path: 'event-management',
-    component: EventManagementComponent
-  }
-  ,{
-    path: '**',
-    component: HomePageComponent
+    loadChildren: () => import('./dash-module/dashboard.module').then(m => m.DashboardModule)
   }
 ];
 

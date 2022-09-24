@@ -1,0 +1,39 @@
+.loginComponent{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #fff;
+
+  .form-div{
+    width: 30%;
+    height: 100%;
+    padding: 30px;
+    border: 1px solid gainsboro;
+
+    form{
+       display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 100%;
+
+      mat-form-field{
+        width: 100%;
+      }
+
+      .loginBtn{
+        width: 100%;
+        background: var(--navy-color);
+        height: 40px;
+        color: #fff;
+        margin-top: 30px;
+      }
+    }
+  }
+
+  .swiper-div{
+    width: 70%;
+    height: 100%;
+    background: var(--lime-color);
+  }
+}

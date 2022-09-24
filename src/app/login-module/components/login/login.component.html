@@ -1,0 +1,38 @@
+<section class="loginComponent" fxLayout="row">
+  <!--form div-->
+  <div class="form-div">
+    <form [formGroup]="loginForm" *ngIf="selectedMode === loginMode.form">
+      <h2><strong>Login</strong></h2>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput type="text" placeholder="Enter username" formControlName="userName">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="Enter Password" formControlName="password">
+        <mat-icon matSuffix (click)="togglePasswordVisibility()">
+          {{showPassword?'visibility_off':'visibility'}}
+        </mat-icon>
+      </mat-form-field>
+
+      <button mat-button class="loginBtn" (click)="login()">Login</button>
+    </form>
+  </div>
+
+  <div class="swiper-div">
+    <swiper [config]="swiperConfig">
+      <div style="height: 50%;width: 100%;background: red;">
+        Swiper slide content parent
+        <div>
+          Swiper slide content
+        </div>
+        <div>
+          Swiper slide content
+        </div>
+      </div>
+
+    </swiper>
+  </div>
+</section>

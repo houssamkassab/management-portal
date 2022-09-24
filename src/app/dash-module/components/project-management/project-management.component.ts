@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PjManagementService } from '../../services/pj-management.service';
+import { PjManagementService } from '../../../services/pj-management.service';
 
 @Component({
   selector: 'app-project-management',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { BudgetService } from '../../services/budget.service';
+import { BudgetService } from '../../../services/budget.service';
 import { BudgetDialogComponent } from '../budget-dialog/budget-dialog.component';
 
 @Component({

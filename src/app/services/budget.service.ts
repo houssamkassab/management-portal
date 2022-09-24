@@ -218,6 +218,7 @@ export class BudgetService {
   }
 
   addNewBudget(data: any): void {
+    data.project_name = data.pjName;
     this.budgetData.unshift(data);
     this.getBudgetData();
   }

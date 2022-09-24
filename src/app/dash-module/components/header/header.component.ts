@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
     {
       displayName: 'Project Management',
       iconName: 'settings_applications',
-      route: 'porject-management',
+      route: 'project-management',
     },
     {
       displayName: 'Finance Management',
