@@ -1,3 +1,34 @@
 <div class="section-content">
-  <p>dashboard works!</p>
+  <section class="section-dash">
+    <div>
+      <canvas baseChart width="300" height="300"
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [chartType]="'pie'"
+              [colors]="colors"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+    </div>
+    <div style="display: block;">
+      <canvas baseChart width="300" height="300"
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [plugins]="barChartPlugins"
+              [legend]="barChartLegend"
+              [colors]="colors"
+              [chartType]="barChartType">
+      </canvas>
+    </div>
+
+    <div class="chart-wrapper" style="margin-top: 100px;">
+      <canvas baseChart
+              [datasets]="bubbleChartData"
+              [options]="bubbleChartOptions"
+              [legend]="bubbleChartLegend"
+              [colors]="colors"
+              [chartType]="bubbleChartType">
+      </canvas>
+    </div>
+  </section>
 </div>

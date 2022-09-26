@@ -2,7 +2,11 @@
   <!--form div-->
   <div class="form-div">
     <form [formGroup]="loginForm" *ngIf="selectedMode === loginMode.form">
-      <h2><strong>Login</strong></h2>
+      <div style="margin: 50px" fxLayout="column" fxLayoutAlign="center center">
+          <h2><strong>Welcome Back!</strong></h2>
+           <p style="opacity: 0.7;">Sign in to continue</p>
+      </div>
+
 
       <mat-form-field appearance="outline">
         <mat-label>Username</mat-label>
@@ -11,28 +15,45 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="Enter Password" formControlName="password">
+        <input matInput [type]="showPassword ? 'text' : 'password'" placeholder="Enter Password"
+               formControlName="password">
         <mat-icon matSuffix (click)="togglePasswordVisibility()">
           {{showPassword?'visibility_off':'visibility'}}
         </mat-icon>
       </mat-form-field>
 
-      <button mat-button class="loginBtn" (click)="login()">Login</button>
+      <button mat-button class="loginBtn" [disabled]="loginForm.invalid" (click)="login()">Login</button>
     </form>
+
+    <ng-container *ngIf="selectedMode === loginMode.verification">
+      <app-verification-code>
+    </app-verification-code>
+    </ng-container>
+
   </div>
 
   <div class="swiper-div">
-    <swiper [config]="swiperConfig">
-      <div style="height: 50%;width: 100%;background: red;">
-        Swiper slide content parent
-        <div>
-          Swiper slide content
-        </div>
-        <div>
-          Swiper slide content
-        </div>
-      </div>
+    <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+      <swiper
+        class="swiper-container "
+        fxFlex="auto"
+        [config]="swiperConfig">
+        <div *ngFor="let slide of slides" class="swiper-slide">
+          <div class="overlay-image" fxLayout="column" fxLayoutAlign="center center" fxFlexFill
+               [ngStyle]="{'background': 'url(' + slide.lgImageUrl + ')'}">
+            <div class="overlay-div">
 
-    </swiper>
+            </div>
+
+            <div class="text-div">
+              <mat-icon style="font-size: 3em; color: #0ef20e;transform: rotate(180deg)">format_quote</mat-icon><br>
+              <h1>
+                <strong>{{slide.text}}</strong></h1>
+            </div>
+
+          </div>
+        </div>
+      </swiper>
+    </div>
   </div>
 </section>

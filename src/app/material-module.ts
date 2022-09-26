@@ -14,6 +14,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AvatarModule } from 'ngx-avatar';
+import {MatTableModule} from '@angular/material/table';
+
 
 const material = [
   FormsModule,
@@ -33,7 +35,7 @@ const material = [
   MatFormFieldModule,
   MatInputModule,
   MatDialogModule,
-
+  MatTableModule
 ];
 
 @NgModule({

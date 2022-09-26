@@ -13,7 +13,9 @@ tr {
   height: 60px;
   border-bottom: 1px solid #dddddd !important;
 }
-
+th.mat-sort-header-sorted {
+  color: black;
+}
 td, th {
   //border-bottom: 1px solid #dddddd;
   text-align: left;

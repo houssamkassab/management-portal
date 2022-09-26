@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatSortModule } from '@angular/material/sort';
+import { ChartsModule } from 'ng2-charts';
 import { MaterialModule } from '../material-module';
 import { BudgetDialogComponent } from './components/budget-dialog/budget-dialog.component';
 import { BudgetComponent } from './components/budget/budget.component';
@@ -13,7 +15,7 @@ import { ProjectManagementComponent } from './components/project-management/proj
 import { PurchaseOrderComponent } from './components/purchase-order/purchase-order.component';
 import { PurchaseRequestComponent } from './components/purchase-request/purchase-request.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-
+import { Chart } from 'chart.js';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ChartsModule,
+    MatSortModule
   ]
 })
 export class DashboardModule { }

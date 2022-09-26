@@ -109,3 +109,40 @@ span, p {
 .section-content{
   padding: 30px;
 }
+
+
+// swiper pagnation
+.swiper-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  position: absolute !important;
+  bottom: 120px !important;
+  left: 25% !important;
+  .swiper-pagination-handle{
+    height: 40px;
+  }
+
+  .swiper-pagination-bullet {
+    &:not(.swiper-pagination-bullet-active) {
+      color: #fff;
+      height: 15px;
+      width: 15px;
+      opacity: 0.5;
+      background-color: #fff;
+    }
+
+    &.swiper-pagination-bullet-active {
+      background-color:#fff;
+      width: 15px;
+      height: 15px;
+      transition: 0.2s all;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      font-weight: bold;
+      opacity: 1;
+    }
+  }
+
+}

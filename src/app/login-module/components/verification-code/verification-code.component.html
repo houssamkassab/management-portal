@@ -1,0 +1,40 @@
+<section class="verify-section" >
+  <div class="icon-div" fxLayoutAlign="center center">
+    <mat-icon>email</mat-icon>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <h2>Verify your messages</h2>
+    <span style="opacity: 0.7;margin-bottom: 15px;">Please enter the 4 digit code sent to</span>
+    <span>70 123***</span>
+  </div>
+
+
+  <form [formGroup]="verifyGroup">
+    <div fxLayoutAlign="space-between center" style="width: 100%;">
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="nbOne" maxlength="1" appNumberOnly>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="nbTwo" maxlength="1" appNumberOnly>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="nbThree" maxlength="1" appNumberOnly>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="nbFour" maxlength="1" appNumberOnly>
+      </mat-form-field>
+    </div>
+
+    <button mat-button class="confirmBtn" [disabled]="verifyGroup.invalid" (click)="confirm()">Confirm</button>
+  </form>
+
+  <p style="opacity: 0.7;">Don't Receive an email!
+    <span style="color: var(--move-color); cursor: pointer;opacity: 1;">
+        <strong>Resend</strong>
+      </span>
+  </p>
+</section>
