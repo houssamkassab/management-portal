@@ -8,11 +8,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NumberOnlyDirective } from './directives/numberOnly';
 import { MaterialModule } from './material-module';
+import { PurchaseDialogComponent } from './shared/purchase-dialog/purchase-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
+    PurchaseDialogComponent
   ],
   imports: [
     BrowserModule,

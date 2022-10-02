@@ -1,48 +1,19 @@
-
-.budgetComponent {
+.budget-section{
   width: 95%;
   position: absolute;
   top: 0px;
   right: 0px;
   bottom: 0px;
   left: 0px;
-  .budget-content {
-    //margin-top: 20px;
-    width: 100%;
-    padding:  30px;
+  h2{
+    margin-top: 30px;
+    margin-left: 20px;
   }
-  .noData{
-    text-align: center;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  table{
+    margin-left: 20px;
   }
 }
 
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-  background: #fff;
-
-}
-
-tr {
-  height: 60px;
-  border-bottom: 1px solid #dddddd !important;
-}
-
-td, th {
-  //border-bottom: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px 15px;
-  min-width: 120px;
-}
-
-tr:last-child {
-  border-bottom: unset;
-}
 
 /*tr:nth-child(even) {
   background-color: #dddddd;
@@ -50,6 +21,8 @@ tr:last-child {
 .td-images {
   display: flex;
   align-items: center;
+  padding: 8px 15px;
+  border-bottom: unset;
   img {
     width: 30px;
     height: 30px;
@@ -71,9 +44,11 @@ tr:last-child {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 10%), 0px 8px 10px 1px rgb(0 0 0 / 0%), 0px 3px 9px 16px rgb(0 0 0 / 0%);
 
-  .newPjBtn{
+  .newPjBtn,.exportBtn{
     background: var(--blue-color);
     color: #fff;
+    margin: 0 15px;
   }
 }

@@ -1,4 +1,11 @@
 <div class="section-content">
   <h2>Purchase Request</h2>
-  <app-listing-table [options]="colsOpions" [data]="purchaseData"></app-listing-table>
+  <app-listing-table [options]="colsOpions"
+                     #tableData
+                     [data]="purchaseData"
+                     [toShowAddBtn]="true"
+                     [addBtnLabel]="'New Request'"
+                     (actionEmit)="handleAction($event)"
+                     (createNewItem)="newRequest($event)"
+                     [menuActions]="menuActions"></app-listing-table>
 </div>

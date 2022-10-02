@@ -1,4 +1,13 @@
 <div class="section-content">
   <h2>Invoices</h2>
-  <app-listing-table [options]="colsOpions" [data]="invoicesData"></app-listing-table>
+
+  <app-listing-table [options]="colsOpions"
+                     #tableData
+                     [data]="invoiceData"
+                     [toShowAddBtn]="true"
+                     [addBtnLabel]="'New Invoice'"
+                     (actionEmit)="handleAction($event)"
+                     (createNewItem)="newInvoice($event)"
+                     [menuActions]="menuActions"></app-listing-table>
+
 </div>

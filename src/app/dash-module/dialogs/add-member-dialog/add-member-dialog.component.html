@@ -1,0 +1,33 @@
+<div class="customModalStyle">
+  <button mat-icon-button
+          (click)="cancel()"
+          aria-label="Close dialog"
+          class="btnClose">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <div class="divContent">
+    <h2 *ngIf="isInternal"> Add Internal Member</h2>
+    <h2 *ngIf="!isInternal"> Add External Member</h2>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Full Name</mat-label>
+      <input matInput  type="text" [(ngModel)]="fullName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Role</mat-label>
+      <mat-select [(ngModel)]="selectedRole" name="role">
+        <mat-option *ngFor="let role of roles" [value]="role.value">
+          {{role.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+      <div class="modalAction">
+        <button mat-dialog-close cdkFocusInitial mat-button class="actions-btn " (click)="save()">
+         Save
+        </button>
+      </div>
+  </div>
+</div>

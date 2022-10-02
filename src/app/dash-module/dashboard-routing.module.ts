@@ -6,6 +6,8 @@ import { EventManagementComponent } from './components/event-management/event-ma
 import { HeaderComponent } from './components/header/header.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { InvoicesComponent } from './components/invoices/invoices.component';
+import { OperationManagementComponent } from './components/operation-management/operation-management.component';
+import { ProjectDetailsComponent } from './components/project-details/project-details.component';
 import { ProjectManagementComponent } from './components/project-management/project-management.component';
 import { PurchaseOrderComponent } from './components/purchase-order/purchase-order.component';
 import { PurchaseRequestComponent } from './components/purchase-request/purchase-request.component';
@@ -21,7 +23,7 @@ const routes: Routes = [
       //   component: HomePageComponent
       // },
       {
-        path: '',
+        path: 'home',
         component: HomePageComponent
       },
       {
@@ -46,12 +48,25 @@ const routes: Routes = [
       },
       {
         path: 'project-management',
-        component: ProjectManagementComponent
+        component: ProjectManagementComponent,
+      },
+      {
+        path: 'project-management/:ID',
+        component: ProjectManagementComponent,
       },
       {
         path: 'event-management',
         component: EventManagementComponent
+      },
+      {
+        path: 'operation-management',
+        component: OperationManagementComponent
       }
+      /*,{
+        path: '**',
+        redirectTo: '/home',
+        pathMatch: 'full'
+      }*/
     ]
   },
 

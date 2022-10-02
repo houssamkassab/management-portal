@@ -1,0 +1,61 @@
+<div class="customModalStyle">
+  <button mat-icon-button
+          (click)="cancel()"
+          aria-label="Close dialog"
+          class="btnClose">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <div class="divContent">
+    <h2 *ngIf="reqData"> Update Requirement</h2>
+    <h2 *ngIf="!reqData"> New Requirement</h2>
+
+    <form [formGroup]="requirementFG" *ngIf="requirementFG">
+
+      <ng-container *ngIf="!reqData">
+        <div fxLayoutAlign="space-between center">
+          <mat-form-field appearance="outline">
+            <mat-label>Category</mat-label>
+            <input matInput type="text" formControlName="category">
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" formControlName="name">
+          </mat-form-field>
+
+        </div>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Short Description</mat-label>
+          <textarea rows="3" matInput type="text" formControlName="short_description"></textarea>
+        </mat-form-field>
+
+
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label> Date</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+      </ng-container>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last Comment</mat-label>
+        <textarea rows="2" matInput type="text" formControlName="last_comment"></textarea>
+      </mat-form-field>
+
+
+    </form>
+
+    <div class="modalAction">
+      <button mat-dialog-close cdkFocusInitial mat-button class="actions-btn "
+              [disabled]="requirementFG.invalid"
+              (click)="save()">
+        Save
+      </button>
+    </div>
+  </div>
+</div>

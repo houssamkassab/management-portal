@@ -1,62 +1,169 @@
+<div class="budget-section">
+  <h2>Budget</h2>
+  <app-listing-table #tableData
+                     [options]="colsOpions"
+                     [data]="budgetsData"
+                     [toShowAddBtn]="true"
+                     [addBtnLabel]="'New Budget'"
+                     [menuActions]="menuActions"
+                     (actionEmit)="handleAction($event)"
+                     (createNewItem)="newBudget($event)">
+
+  </app-listing-table>
+</div>
+
+
+<!--
 <section class="budgetComponent">
-  <!--<div *ngFor="let item of data; let ii=index">-->
-  <!--<p>{{item.project_name}}</p>-->
-  <!--</div>-->
 
   <div class="filter-div">
 
     <mat-form-field appearance="outline">
-      <mat-label>Search by project name</mat-label>
-      <input matInput type="text" placeholder="Search by project name" (input)="filterProject($event)"
-             [(ngModel)]="inputSearch">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input>
     </mat-form-field>
 
+    <div>
+      <button class="exportBtn" mat-button [matMenuTriggerFor]="menu">Export</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>As PDF</button>
+        <button mat-menu-item>As Excel</button>
+      </mat-menu>
 
-    <button mat-button class="newPjBtn" (click)="openDialog()">
-      + &nbsp; New Project
-    </button>
+      <button mat-button class="newPjBtn" (click)="openDialog()">
+        + &nbsp; New Project
+      </button>
+
+    </div>
+
   </div>
 
   <section class="budget-content">
     <h2>Budget</h2>
 
-    <table *ngIf="data?.length">
-      <thead>
-      <tr>
-        <th>Project</th>
-        <th>Tasks</th>
-        <th>Members</th>
-        <th>Progress</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let item of data; let ii=index">
-        <td class="td-images">
-          <img [src]="item?.image" alt="">
-          {{item.project_name}} {{item.project_name}}
-        </td>
-        <td>{{item.tasks}} Tasks</td>
-        <td class="td-images" *ngIf="item?.members?.length">
-          <img *ngIf="item?.members[0]?.profile" [src]="item.members[0].profile" alt="">
-          <img *ngIf="item?.members[1]?.profile" [src]="item.members[1].profile" alt="">
+    &lt;!&ndash; <table *ngIf="data?.length">
+       <thead>
+       <tr>
+         <th>Project</th>
+         <th>Tasks</th>
+         <th>Members</th>
+         <th>Progress</th>
+         <th>Status</th>
+         <th>Actions</th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr *ngFor="let item of data; let ii=index">
+         <td class="td-images">
+           <img [src]="item?.image" alt="">
+           {{item.project_name}} {{item.project_name}}
+         </td>
+         <td>{{item.tasks}} Tasks</td>
+         <td class="td-images" *ngIf="item?.members?.length">
+           <img *ngIf="item?.members[0]?.profile" [src]="item.members[0].profile" alt="">
+           <img *ngIf="item?.members[1]?.profile" [src]="item.members[1].profile" alt="">
+           <div fxLayout="row" fxLayoutAlign="center center">
+             <span> +</span>
+             <span>{{item.members.length}}</span>
+           </div>
+         </td>
+         <td>{{item.progress}}</td>
+         <td>{{item.status}}</td>
+         <td>
+           <button mat-icon-button (click)="openDialog(item)">
+             <mat-icon>more_horiz</mat-icon>
+           </button>
+         </td>
+       </tr>
+       </tbody>
+     </table>&ndash;&gt;
+
+
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($any($event))"
+           class="mat-elevation-z8" *ngIf="data?.length">
+
+      &lt;!&ndash; Project Column &ndash;&gt;
+      <ng-container matColumnDef="project_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Project
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.project_name}}</td>
+      </ng-container>
+
+      &lt;!&ndash; tasks Column &ndash;&gt;
+      <ng-container matColumnDef="tasks">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Tasks
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.tasks}}</td>
+      </ng-container>
+
+      &lt;!&ndash; members Column &ndash;&gt;
+      <ng-container matColumnDef="members">
+        <th mat-header-cell *matHeaderCellDef>
+          Members
+        </th>
+        <td mat-cell *matCellDef="let element" class="td-images">
+          <img *ngIf="element?.members[0]?.profile" [src]="element.members[0].profile" alt="">
+          <img *ngIf="element?.members[1]?.profile" [src]="element.members[1].profile" alt="">
           <div fxLayout="row" fxLayoutAlign="center center">
             <span> +</span>
-            <span>{{item.members.length}}</span>
+            <span>{{element.members.length}}</span>
+          </div>
+
+          &lt;!&ndash;{{element.members}} &ndash;&gt;
+        </td>
+      </ng-container>
+
+      &lt;!&ndash; progress Column &ndash;&gt;
+      <ng-container matColumnDef="progress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Progress
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <div fxLayoutAlign="space-between center" style="width: 140px;">
+            <div style="width: 100px;height: 4px;background: lightgrey">
+              <div style.width.%="{{element.progress}}"
+                   [style.height]="'4px'"
+                   [ngStyle]="{'background': element.progress == 100 ? '#32e392' : 'blue'}"></div>
+            </div>
+            <span *ngIf="element.progress < 100">{{element.progress}} %</span>
+            <span *ngIf="element.progress == 100">
+            <mat-icon class="progressIcon">verified</mat-icon>
+          </span>
           </div>
         </td>
-        <td>{{item.progress}}</td>
-        <td>{{item.status}}</td>
-        <td>
-          <button mat-icon-button (click)="openDialog(item)">
+      </ng-container>
+
+      &lt;!&ndash; status Column &ndash;&gt;
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Status
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="ready_class" *ngIf="element.status === 'Ready'">{{element.status}}</span>
+          <span class="pending_class" *ngIf="element.status !== 'Ready'">{{element.status}}</span>
+        </td>
+      </ng-container>
+
+      &lt;!&ndash; actions   Column &ndash;&gt;
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>
+          Actions
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button (click)="openDialog(element)">
             <mat-icon>more_horiz</mat-icon>
           </button>
         </td>
-      </tr>
-      </tbody>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
 
     <h2 *ngIf="!data?.length" class="noData">No Data</h2>
   </section>
 </section>
+-->

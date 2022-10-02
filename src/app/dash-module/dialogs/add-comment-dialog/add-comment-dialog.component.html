@@ -1,0 +1,24 @@
+<div class="customModalStyle">
+  <button mat-icon-button
+          (click)="cancel()"
+          aria-label="Close dialog"
+          class="btnClose">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <div class="divContent">
+    <h2>Add New Comment</h2>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Comment</mat-label>
+      <textarea matInput rows="6" type="text" [(ngModel)]="comment"  ></textarea>
+    </mat-form-field>
+
+
+      <div class="modalAction">
+        <button mat-dialog-close cdkFocusInitial mat-button class="actions-btn " (click)="save()">
+         Save
+        </button>
+      </div>
+  </div>
+</div>

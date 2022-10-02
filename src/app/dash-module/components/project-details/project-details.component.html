@@ -1,0 +1,189 @@
+<div class="section-content fullDimensions">
+
+  <div fxLayoutAlign="space-between center" style="margin-bottom: 20px;">
+    <h2>Project Details</h2>
+    <button mat-button class="update-btn" (click)="updateProject()">Update Project</button>
+  </div>
+
+  <section class="details-content" fxLayoutAlign="space-between start">
+
+
+    <mat-tab-group class="mat-group-content"
+                   [ngStyle]="{'width' : parentTabIndex === 0 ? '65%' : '95%' }"
+                   (selectedTabChange)="changeParentTabs($event)">
+      <mat-tab label="Details">
+        <div class="tab-details">
+          <div fxLayoutAlign="space-between center">
+            <div fxLayoutAlign="start center">
+              <img class="pj-image" [src]="projectData.image" alt="">
+              <h2>{{projectData.title}}</h2>
+            </div>
+
+            <span [ngClass]="{'ready_class': projectData?.status === 'Ready',
+                            'pending_class': projectData?.status !== 'Ready'}">
+                  {{projectData.status}}
+                </span>
+          </div>
+
+          <div>
+            <h3>Description</h3>
+            <p style="opacity: 0.7">{{projectData.description}}</p>
+          </div>
+
+          <div fxLayoutAlign="space-between center">
+            <div>
+              <strong><span>Department : </span></strong>
+              <span>{{projectData.department}}</span>
+            </div>
+            <div>
+              <strong><span>Due Date : </span></strong>
+              <span>{{projectData.end_date | date: 'dd/MM/YYYY'}}</span>
+            </div>
+          </div>
+
+          <div fxLayoutAlign="space-between start">
+            <mat-tab-group (selectedTabChange)="changeTabs($event)" class="bottom-tab-group">
+
+              <mat-tab label="Comments">
+                <div *ngFor="let comment of projectData.comments" class="comments-content">
+                  <div fxLayout="column">
+                    <div fxLayoutAlign="start center">
+                      <!--<img src="{{comment.imageUrl}}" alt="">-->
+                      <img [src]="comment.imageUrl" alt="" class="pj-image">
+                      <div fxLayout="column">
+                        <h3 style="margin-bottom: 0 !important;">{{comment.userName}}</h3>
+                        <span style="opacity: 0.7;">{{comment.date}}</span>
+                      </div>
+                    </div>
+                    <p style="opacity: 0.7;margin: 15px 0;">{{comment.comment}}</p>
+                  </div>
+                </div>
+              </mat-tab>
+
+              <mat-tab label="Attachments">
+                <mat-tab-body fxLayout="row wrap" fxLayoutAlign="space-between center">
+                  <div class="attach-tab" *ngFor="let attachment of projectData.attachments"
+                       fxLayoutAlign="space-between center">
+                    <div fxLayoutAlign="start center" class="attach-content">
+                      <!--<img src="{{comment.imageUrl}}" alt="">-->
+                      <mat-icon class="icon-style">{{attachment.icon}}</mat-icon>
+                      <div fxLayout="column">
+                        <h3 style="margin-bottom: 0 !important;">{{attachment.name}}</h3>
+                        <span style="opacity: 0.7;">{{attachment.size}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </mat-tab-body>
+              </mat-tab>
+
+              <mat-tab label="Internal Team">
+                <mat-tab-body class="team-content" fxLayout="row wrap" fxLayoutAlign="space-between center">
+                  <div *ngFor="let user of projectData.internalTeam"
+                       fxLayoutAlign="space-between center">
+                    <div fxLayoutAlign="start center" class="internal-content">
+                      <img [src]="user.imageUrl" alt="" class="pj-image">
+                      <div fxLayout="column">
+                        <h3 style="margin-bottom: 0 !important;">{{user.userName}}</h3>
+                        <span style="opacity: 0.7;">{{user.role}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </mat-tab-body>
+
+
+              </mat-tab>
+
+              <mat-tab label="External Team">
+
+                <mat-tab-body class="team-content" fxLayout="row wrap" fxLayoutAlign="space-between center">
+                  <div *ngFor="let user of projectData.externalTeam"
+                       fxLayoutAlign="space-between center">
+                    <div fxLayoutAlign="start center" class="internal-content">
+                      <img [src]="user.imageUrl" alt="" class="pj-image">
+                      <div fxLayout="column">
+                        <h3 style="margin-bottom: 0 !important;">{{user.userName}}</h3>
+                        <span style="opacity: 0.7;">{{user.role}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </mat-tab-body>
+              </mat-tab>
+
+            </mat-tab-group>
+
+            <div class="add-btns-div">
+              <button mat-icon-button *ngIf="selectedTabIndex === 0"
+                      matTooltip="Add Comment" (click)="addComment()">
+                <mat-icon>add</mat-icon>
+              </button>
+              <button mat-icon-button *ngIf="selectedTabIndex === 1"
+                      matTooltip="Add Attachment" (click)="addAttachment()">
+                <mat-icon>add</mat-icon>
+              </button>
+              <button mat-icon-button *ngIf="selectedTabIndex === 2"
+                      matTooltip="Add Internal Member" (click)="addInternalMember()">
+                <mat-icon>add</mat-icon>
+              </button>
+              <button mat-icon-button *ngIf="selectedTabIndex === 3"
+                      matTooltip="Add External Member" (click)="addExternalMember()">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Planning">
+        <app-planning-list>
+        </app-planning-list>
+      </mat-tab>
+
+      <mat-tab label="Risks">
+        <app-risks-list>
+      </app-risks-list>
+      </mat-tab>
+
+      <mat-tab label="Issues">
+        <app-issues-list></app-issues-list>
+      </mat-tab>
+
+      <mat-tab label="Requirements">
+        <app-requirement-list>
+      </app-requirement-list>
+      </mat-tab>
+
+    </mat-tab-group>
+
+    <!--phase div-->
+    <div class="phases-div" *ngIf="parentTabIndex === 0">
+      <div fxLayoutAlign="space-between center">
+        <span><strong>Phases</strong></span>
+
+        <button mat-icon-button [matMenuTriggerFor]="actionsMenu">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #actionsMenu="matMenu">
+          <button mat-menu-item>Hold Project</button>
+          <button mat-menu-item>Next Phase</button>
+          <button mat-menu-item>Cancel Project</button>
+        </mat-menu>
+      </div>
+
+
+      <div>
+        <mat-stepper orientation="vertical" #stepper>
+          <mat-step *ngFor="let phase of phases">
+            <ng-template matStepLabel>
+              <div fxLayout="column">
+                {{phase.name}}
+                <span style="opacity: 0.7;">{{phase.desc}}</span>
+              </div>
+            </ng-template>
+
+          </mat-step>
+
+        </mat-stepper>
+      </div>
+    </div>
+  </section>
+</div>

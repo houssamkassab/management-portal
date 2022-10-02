@@ -8,37 +8,35 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./budget-dialog.component.scss']
 })
 export class BudgetDialogComponent implements OnInit {
-  projectDetails: any;
-  pjGroup: FormGroup;
+  budgetDetails: any;
+  budgetGP: FormGroup;
 
   constructor( public dialogRef: MatDialogRef<BudgetDialogComponent>,
                private _fb: FormBuilder,
                @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.projectDetails= data;
+    this.budgetDetails= data;
   }
 
   ngOnInit(): void {
-    if(this.projectDetails && this.projectDetails != null){
+    if(this.budgetDetails && this.budgetDetails != null){
       this.iniForm();
     }
     else {
-      this.pjGroup = this._fb.group({
-        pjName: ['', Validators.required],
-        tasks: [0, Validators.required],
-        members: ['', Validators.required],
-        progress: [20, Validators.required],
-        status: ['', Validators.required],
+      this.budgetGP = this._fb.group({
+        title: ['', Validators.required],
+        year: [2022, Validators.required],
+        allocated_amount: ['', Validators.required],
+        code: ['', Validators.required],
       })
     }
   }
 
   iniForm(): void{
-    this.pjGroup = this._fb.group({
-      pjName: [this.projectDetails?.project_name, Validators.required],
-      tasks: [this.projectDetails?.tasks, Validators.required],
-      members: [this.projectDetails?.members?.length, Validators.required],
-      progress: [this.projectDetails?.progress, Validators.required],
-      status: [this.projectDetails?.status, Validators.required],
+    this.budgetGP = this._fb.group({
+      title: [this.budgetDetails?.title, Validators.required],
+      year: [this.budgetDetails?.year, Validators.required],
+      allocated_amount: [this.budgetDetails?.allocated_amount, Validators.required],
+      code: [this.budgetDetails?.code, Validators.required]
     })
   }
   cancel(): void{
@@ -46,16 +44,16 @@ export class BudgetDialogComponent implements OnInit {
   }
   save(toDeletePj?: boolean): void{
 
-    if(toDeletePj)
-      this.dialogRef.close(toDeletePj);
-
-    else {
-      const dataToSend = {
-        ...this.pjGroup.getRawValue(),
-        isNew: !(!!this.projectDetails)
-      };
-    this.dialogRef.close(dataToSend);
-    }
+    // if(toDeletePj)
+    //   this.dialogRef.close(toDeletePj);
+    //
+    // else {
+    //   const dataToSend = {
+    //     ...this.budgetGP.getRawValue(),
+    //     isNew: !(!!this.budgetDetails)
+    //   };
+    this.dialogRef.close(this.budgetGP.getRawValue());
+    // }
   }
 
   deleteProject(): void{

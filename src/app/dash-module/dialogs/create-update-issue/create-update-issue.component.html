@@ -1,0 +1,74 @@
+<div class="customModalStyle">
+  <button mat-icon-button
+          (click)="cancel()"
+          aria-label="Close dialog"
+          class="btnClose">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <div class="divContent">
+    <h2 *ngIf="issueData"> Update Issue</h2>
+    <h2 *ngIf="!issueData"> New Issue</h2>
+
+    <form [formGroup]="issueFG" *ngIf="issueFG">
+
+
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input matInput type="text" formControlName="title">
+        </mat-form-field>
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea rows="3" matInput type="text" formControlName="description"></textarea>
+      </mat-form-field>
+
+
+      <div fxLayoutAlign="space-between center">
+
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label> Date</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label> Resolution Date</mat-label>
+          <input matInput [matDatepicker]="picker2" formControlName="resolution_date">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+      </div>
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Solution</mat-label>
+        <textarea rows="2" matInput type="text" formControlName="solution"></textarea>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline">
+        <mat-label>Responsible team</mat-label>
+        <mat-select name="role" formControlName="responsible_team">
+          <mat-option *ngFor="let team of resTeam" [value]="team.value">
+            {{team.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+    </form>
+
+    <div class="modalAction">
+      <button mat-dialog-close cdkFocusInitial mat-button class="actions-btn "
+              [disabled]="issueFG.invalid"
+              (click)="save()">
+        Save
+      </button>
+    </div>
+  </div>
+</div>

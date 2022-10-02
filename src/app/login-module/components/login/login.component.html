@@ -3,6 +3,7 @@
   <div class="form-div">
     <form [formGroup]="loginForm" *ngIf="selectedMode === loginMode.form">
       <div style="margin: 50px" fxLayout="column" fxLayoutAlign="center center">
+        <img  style="width: 80px;height: 80px; margin-bottom: 30px;" src="assets/images/email-12-xxl.png" alt="">
           <h2><strong>Welcome Back!</strong></h2>
            <p style="opacity: 0.7;">Sign in to continue</p>
       </div>
@@ -46,9 +47,9 @@
             </div>
 
             <div class="text-div">
-              <mat-icon style="font-size: 3em; color: #0ef20e;transform: rotate(180deg)">format_quote</mat-icon><br>
+             <!-- <mat-icon style="font-size: 3em; color: #0ef20e;transform: rotate(180deg)">format_quote</mat-icon><br>
               <h1>
-                <strong>{{slide.text}}</strong></h1>
+                <strong>{{slide.text}}</strong></h1>-->
             </div>
 
           </div>

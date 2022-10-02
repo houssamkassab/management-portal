@@ -1,0 +1,13 @@
+<div class="section-content">
+      <h2>Operation Management</h2>
+      <app-listing-table [options]="colsOpions"
+                         #tableData
+                         [data]="operationsData"
+                         [isRowClickable]="true"
+                         [toShowAddBtn]="true"
+                         [addBtnLabel]="'New Operation'"
+                         [menuActions]="menuActions"
+                         (actionEmit)="handleAction($event)"
+                         (createNewItem)="newOperation($event)"></app-listing-table>
+
+</div>

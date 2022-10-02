@@ -1,4 +1,15 @@
 <div class="section-content">
-  <h2>Project Management</h2>
-  <app-listing-table [options]="colsOpions" [data]="allData"></app-listing-table>
+  <ng-container *ngIf="!projectID">
+      <h2>Project Management</h2>
+      <app-listing-table [options]="colsOpions"
+                         [data]="allData"
+                         [isRowClickable]="true"
+                         [toShowAddBtn]="true"
+                         [addBtnLabel]="'New Project'"
+                         (createNewItem)="newProject($event)"
+                         (emitRowData)="goToDetails($event)"></app-listing-table>
+  </ng-container>
+  <ng-container *ngIf="projectID">
+    <app-project-details></app-project-details>
+  </ng-container>
 </div>

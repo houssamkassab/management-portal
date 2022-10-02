@@ -1,0 +1,104 @@
+.fullDimensions {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  left: 20px;
+  bottom: 0;
+  padding: unset !important;
+
+
+  .update-btn{
+    background:var(--green-color);
+    color: #fff;
+    width: 140px;
+    height: 40px;
+  }
+
+  .details-content {
+    width: 100%;
+
+
+
+    .mat-group-content {
+      background: #fff;
+      //width: 65%;
+      ::ng-deep .mat-tab-header {
+        margin-bottom: 30px;
+      }
+    }
+    .ready_class {
+      color: #32e392;
+      background-color: #6fdaa91f;
+      padding: 5px 10px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+    .pending_class {
+      color: #1044f2;
+      background-color: #68709b1f;
+      padding: 5px 10px;
+      border-radius: 10px;
+      //font-weight: bold;
+    }
+    .pj-image {
+      width: 55px;
+      height: 55px;
+      border-radius: 10px;
+      margin-right: 15px;
+    }
+
+    .tab-details {
+      padding: 0 20px;
+      > div {
+        padding: 20px 0;
+      }
+      .comments-content {
+        margin: 15px 0;
+      }
+    }
+    ::ng-deep .mat-tab-label {
+      min-width: 130px !important;
+    }
+
+    .bottom-tab-group{
+      width: 75%;
+    }
+
+    .add-btns-div{
+      button{
+        background: lightgrey;
+      }
+    }
+    .attach-tab {
+      //::ng-deep &.mat-tab-body-content{
+      .icon-style {
+        width: 50px;
+        height: 50px;
+        font-size: 3.4em;
+      }
+      .attach-content {
+        border: 1px solid gainsboro;
+        padding: 10px;
+        margin: 15px
+      }
+    }
+
+    .team-content {
+      max-width: 100%;
+      .internal-content{
+        padding: 10px;
+        margin: 15px;
+        border: 2px solid gainsboro;
+        border-radius: 10px;
+      }
+    }
+
+
+    .phases-div{
+      width: 30%;
+      background: #fff;
+      padding: 20px;
+    }
+  }
+}
+

@@ -18,9 +18,8 @@ export class VerificationCodeComponent implements OnInit {
       nbTwo:[null, Validators.required],
       nbThree:[null, Validators.required],
       nbFour:[null, Validators.required],
-    })
+    });
 
-    ;
   }
   confirm(): void{
     const fg = this.verifyGroup.getRawValue();
@@ -28,4 +27,5 @@ export class VerificationCodeComponent implements OnInit {
     console.log({code});
     this._router.navigate(['/home']);
   }
+
 }

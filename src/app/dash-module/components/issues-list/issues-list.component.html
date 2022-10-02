@@ -1,0 +1,13 @@
+<div class="planning-content">
+  <!--<h2>Planning List</h2>-->
+  <app-listing-table #tableData
+                      [options]="colsOpions"
+                     [data]="issuesData"
+                     [toShowAddBtn]="true"
+                     [addBtnLabel]="'New Issue'"
+                     [menuActions]="menuActions"
+                     (actionEmit)="handleAction($event)"
+                     (createNewItem)="newIssue($event)">
+
+  </app-listing-table>
+</div>

@@ -7,15 +7,36 @@ table {
     background: var(--blue-color);
     color: #fff;
   }
+
+  ::ng-deep .mat-sort-header-arrow{
+    color: red !important;
+  }
+
+  ::ng-deep .mat-sort-header-content,.mat-header-cell{
+    font-size: 1em;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .paid_class{
+    color: #10c31b;
+    background-color:  #72a7422e;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .pending_class{
+    color: #f27910e8;
+    background-color: #f1ca0f4a;
+    padding: 5px;
+    border-radius: 5px;
+  }
 }
 
 tr {
   height: 60px;
   border-bottom: 1px solid #dddddd !important;
 }
-th.mat-sort-header-sorted {
-  color: black;
-}
+
 td, th {
   //border-bottom: 1px solid #dddddd;
   text-align: left;
@@ -25,4 +46,58 @@ td, th {
 
 tr:last-child {
   border-bottom: unset;
+}
+
+
+.filterDiv{
+  background: #fff;
+  padding: 30px 30px 10px;
+  border-radius: 10px;
+  width: 400px;
+  mat-form-field{
+    width: 100%;
+  }
+}
+.downloadPDF_btn{
+  border-radius: 5px;
+  mat-icon{
+    background: #d3d3d3b3;
+    padding: 0.2em;
+  }
+  .pdf-span{
+    background: #efe9e9b3;
+    padding: 0.6em;
+  }
+}
+.filter-div {
+  background: #fff;
+  padding: 20px 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .newPjBtn,.exportBtn{
+    background: var(--blue-color);
+    color: #fff;
+    margin: 0 15px;
+  }
+}
+.ready_class{
+  color: #32e392;
+  background-color: #6fdaa91f;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+.pending_class{
+  color: #1044f2;
+  background-color: #68709b1f;
+  padding: 5px 10px;
+  border-radius: 10px;
+  //font-weight: bold;
+}
+.progressIcon{
+  color: #32e392;
+  font-size: 1.2em;
 }

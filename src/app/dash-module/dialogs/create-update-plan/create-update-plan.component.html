@@ -1,0 +1,74 @@
+<div class="customModalStyle">
+  <button mat-icon-button
+          (click)="cancel()"
+          aria-label="Close dialog"
+          class="btnClose">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <div class="divContent">
+    <h2 *ngIf="planData"> Update Plan</h2>
+    <h2 *ngIf="!planData"> New Plan</h2>
+
+    <form [formGroup]="planFG" *ngIf="planFG">
+
+      <div fxLayoutAlign="space-between center">
+        <mat-form-field appearance="outline">
+          <mat-label>Task Name</mat-label>
+          <input matInput type="text" formControlName="task_name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Duration</mat-label>
+          <input matInput type="text" formControlName="duration">
+        </mat-form-field>
+      </div>
+
+
+      <div fxLayoutAlign="space-between center">
+
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label>Estimated Start Date</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="start_date">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label>Estimated End Date</mat-label>
+          <input matInput [matDatepicker]="picker2" formControlName="finish_date">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+      </div>
+
+      <div fxLayoutAlign="space-between center">
+        <mat-form-field appearance="outline">
+          <mat-label>Weight</mat-label>
+          <input matInput type="text" formControlName="weight">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Completed %</mat-label>
+          <input matInput type="text" formControlName="completed">
+        </mat-form-field>
+
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Comment</mat-label>
+        <textarea rows="4" matInput type="text" formControlName="comment"></textarea>
+      </mat-form-field>
+
+    </form>
+
+    <div class="modalAction">
+      <button mat-dialog-close cdkFocusInitial mat-button class="actions-btn "
+              [disabled]="planFG.invalid"
+              (click)="save()">
+        Save
+      </button>
+    </div>
+  </div>
+</div>

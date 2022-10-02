@@ -22,23 +22,19 @@ export class LoginComponent implements OnInit {
     slidesPerView: 1,
     keyboard: true,
     scrollbar: false,
-    pagination:{
+  /*  pagination:{
       el:'.swiper-pagination',
       clickable: true,
       type: 'bullets'
-    },
+    },*/
     spaceBetween: 5,
     autoplay:{
       delay: 5000
     }
-    // navigation: {
-    //   nextEl: '.swiper-arrow-next',
-    //   prevEl: '.swiper-arrow-previous',
-    // },
   };
   slides=[{
 
-      lgImageUrl: 'https://www.educationdragon.com/wp-content/uploads/2021/04/starting-a-business-in-India-for-foreign-company.jpg',
+      lgImageUrl: 'https://img.freepik.com/free-photo/group-diverse-people-having-business-meeting_53876-25060.jpg?w=2000',
      text:"It was city government's intention that developers should meet the total costs of major developments."
     },
     {

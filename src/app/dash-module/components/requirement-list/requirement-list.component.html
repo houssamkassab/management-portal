@@ -1,0 +1,14 @@
+<div class="planning-content">
+  <!--<h2>Planning List</h2>-->
+  <app-listing-table #tableData
+                      [options]="colsOpions"
+                     [data]="reqData"
+                     [toShowAddBtn]="true"
+                     [addBtnLabel]="'New Requirement'"
+                     [toAddSelect]="true"
+                     [menuActions]="menuActions"
+                     (actionEmit)="handleAction($event)"
+                     (createNewItem)="newReq($event)">
+
+  </app-listing-table>
+</div>

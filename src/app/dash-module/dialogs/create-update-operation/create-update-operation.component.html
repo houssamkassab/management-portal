@@ -1,0 +1,104 @@
+<div class="customModalStyle">
+  <button mat-icon-button
+          (click)="cancel()"
+          aria-label="Close dialog"
+          class="btnClose">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <div class="divContent">
+    <h2 *ngIf="operationData"> Update Operation</h2>
+    <h2 *ngIf="!operationData"> New Operation</h2>
+
+    <form [formGroup]="operationFG" *ngIf="operationFG">
+
+      <div fxLayoutAlign="space-between center">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input matInput type="text" formControlName="title">
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+          <mat-label>Type</mat-label>
+          <mat-select name="department" formControlName="type">
+            <mat-option *ngFor="let type of types" [value]="type.value">
+              {{type.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+
+      <div fxLayoutAlign="space-between center">
+
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label>Estimated Start Date</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="estimated_start_date">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label>Estimated End Date</mat-label>
+          <input matInput [matDatepicker]="picker2" formControlName="estimated_end_date">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+      </div>
+
+      <div fxLayoutAlign="space-between center">
+        <mat-form-field appearance="outline">
+          <mat-label>Completion %</mat-label>
+          <input matInput type="text" formControlName="completion">
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+          <mat-label>Status</mat-label>
+          <mat-select name="role" formControlName="status">
+            <mat-option *ngFor="let status of statusAvailable" [value]="status.value">
+              {{status.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Comments</mat-label>
+        <textarea matInput name="comment" rows="4" formControlName="comments"></textarea>
+      </mat-form-field>
+
+
+      <div fxLayoutAlign="space-between center">
+
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label>Actual Start Date</mat-label>
+          <input matInput [matDatepicker]="picker3" formControlName="actual_start_date">
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label>Actual End Date</mat-label>
+          <input matInput [matDatepicker]="picker4" formControlName="actual_end_date">
+          <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+          <mat-datepicker #picker4></mat-datepicker>
+        </mat-form-field>
+
+      </div>
+    </form>
+
+    <div class="modalAction">
+      <button mat-dialog-close cdkFocusInitial mat-button class="actions-btn "
+              [disabled]="operationFG.invalid"
+              (click)="save()">
+        Save
+      </button>
+    </div>
+  </div>
+</div>

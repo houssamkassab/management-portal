@@ -7,54 +7,41 @@
   </button>
 
   <div class="divContent">
-    <h2 *ngIf="!projectDetails">Create New Project</h2>
-    <h2 *ngIf="projectDetails">Update Project</h2>
-    <form [formGroup]="pjGroup">
+    <h2 *ngIf="!budgetDetails">Create New Budget</h2>
+    <h2 *ngIf="budgetDetails">Update Budget</h2>
+    <form [formGroup]="budgetGP">
 
 
       <div>
         <mat-form-field appearance="outline">
-          <mat-label>Project name</mat-label>
-          <input matInput type="text" placeholder="Project name" formControlName="pjName">
+          <mat-label>Title</mat-label>
+          <input matInput type="text" placeholder="Title" formControlName="title">
         </mat-form-field>
       </div>
 
       <div>
         <mat-form-field appearance="outline">
-          <mat-label>Tasks</mat-label>
-          <input matInput type="text" placeholder="Tasks" formControlName="tasks">
+          <mat-label>Year</mat-label>
+          <input matInput type="text" placeholder="Year" formControlName="year">
         </mat-form-field>
       </div>
 
       <div fxLayout="row" fxLayoutAling="space-between center">
         <mat-form-field appearance="outline" style="margin-right: 15px;">
-          <mat-label>Status</mat-label>
-          <input matInput type="text" placeholder="Status" formControlName="status">
+          <mat-label>Allocated amount</mat-label>
+          <input matInput type="text" placeholder="Allocated amount" formControlName="allocated_amount">
         </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Members</mat-label>
-            <input matInput type="text" placeholder="Members" formControlName="members">
+            <mat-label>Code</mat-label>
+            <input matInput type="text" placeholder="Code" formControlName="code">
           </mat-form-field>
       </div>
 
-      <div>
-        <mat-form-field appearance="outline">
-          <mat-label>Progress</mat-label>
-          <input matInput type="text" placeholder="Members" formControlName="progress">
-        </mat-form-field>
-      </div>
       <div class="modalAction">
 
-        <button *ngIf="projectDetails"
-                mat-dialog-close  mat-button class=" deletePjBtn " (click)="deleteProject()">
-          Delete  Project
-        </button>
-
-
         <button mat-dialog-close cdkFocusInitial mat-button class="newPjBtn actions-btn" (click)="save()">
-         <span *ngIf="!projectDetails"> Create  Project</span>
-         <span *ngIf="projectDetails"> Update  Project</span>
+         <span > Save</span>
         </button>
 
 
